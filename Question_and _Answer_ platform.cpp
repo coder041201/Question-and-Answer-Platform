@@ -8,9 +8,10 @@ class Question_Answer
 {
     string question;
     string answer;
-    bool answered;
 
 public:
+    bool answered;
+
     void accept_question()
     {
         cout << "Enter question (End with '?')" << endl;
@@ -30,52 +31,207 @@ public:
         }
     };
 
-    friend class topic;
-};
-
-class topics
-{
-    string topic;
-
-    vector<Question_Answer> data;
-
-    void accept_questions_wrt_topic();
-
-    void display_by_topic(string subject)
-    {
-        cout << topic << endl;
-        for (int i = 0; i < data.size(); i++)
-        {
-            data[i].display();
-        }
-    }
-
-    void display_by_topic_questions(string subject);
-
-    void display_by_topic_answered(string subject);
-
     friend class question_answer_data;
 };
 
+// class topics
+// {
+//     string topic;
+
+//     vector<Question_Answer> data;
+
+//     void accept_questions_wrt_topic();
+
+//     void display_topic(string subject)
+//     {
+//         cout << topic << endl;
+//         for (int i = 0; i < data.size(); i++)
+//         {
+//             data[i].display();
+//         }
+//     }
+
+//     void display_by_topic_questions(string subject);
+
+//     void display_by_topic_answered(string subject);
+
+//     friend class question_answer_data;
+// };
+
 class question_answer_data
 {
-    vector<topics> database;
+    vector<string> topic;
+    vector<vector<Question_Answer>> database;
 
-    void accept_question_by_topic();
-
-    void display_all();
-    void display_all_questions();
-    void display_all_answered();
-
-    void accept_answer(int index, Question_Answer qna);
-};
-
-void question_answer_data ::display_all()
-{
-    for (int i = 0; i < database.size(); i++)
+public:
+    void accept_question_by_topic(string subject)
     {
-        //for (int j = 0; j < database[i].size(); j++)
+        int i = 0;
+        bool found = false;
+
+        for (i = 0; i < topic.size(); i++)
         {
+            if (topic[i] == subject)
+            {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+        {
+            topic.push_back(subject);
+            Question_Answer temp;
+            temp.accept_question();
+            database[i].push_back(temp);
+            return;
+        }
+        else
+        {
+            Question_Answer temp;
+            temp.accept_question();
+            database[i].push_back(temp);
+            return;
         }
     }
+
+    void display_by_topic(string subject)
+    {
+        int i = 0;
+
+        for (i = 0; i < topic.size(); i++)
+        {
+            if (topic[i] == subject)
+                break;
+        }
+        for (int j = 0; j < database[i].size(); j++)
+        {
+            database[i][j].display();
+            if (j % 5 == 0)
+            {
+                cout << "For more questions type y (else type any other char)" << endl;
+                char x;
+                cin >> x;
+                if (x == 'y' || x == 'Y')
+                {
+                    continue;
+                }
+                else
+                    break;
+            }
+        }
+    }
+
+    void display_all()
+    {
+        int count = 0;
+        for (int i = 0; i < database.size(); i++)
+        {
+            for (int j = 0; j < database[i].size(); j++)
+            {
+                database[i][j].display();
+
+                count++;
+
+                if (count % 5 == 0)
+                {
+                    cout << "For more database type y(else type any other char)" << endl;
+                    char x;
+                    cin >> x;
+                    if (x == 'y' || x == 'Y')
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    void display_all_unanswered()
+    {
+        int count = 0;
+        char x;
+        for (int i = 0; i < database.size(); i++)
+        {
+            for (int j = 0; database[i].size(); j++)
+            {
+
+                if (!database[i][j].answered)
+                {
+                    cout << database[i][j].question;
+                    count++;
+                    if (count % 5 == 0)
+                    {
+                        cout << "For more database type y(else type any other char)";
+                        cin >> x;
+                        if (x == 'y' || x == 'Y')
+                        {
+                            continue;
+                        }
+                        else
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    void display_all_answered()
+    {
+        int count = 0;
+        char x;
+        for (int i = 0; i < database.size(); i++)
+        {
+            for (int j = 0; j < database[i].size(); j++)
+            {
+                if (database[i][j].answered)
+                {
+                    database[i][j].display();
+                    count++;
+                    if (count % 5 == 0)
+                    {
+                        cout << "For more type y";
+                        cin >> x;
+                        if (x == 'y' || 'Y')
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+};
+
+// void display_all_answered();
+
+// void accept_answer(int index, Question_Answer qna);
+// void question_answer_data ::display_all()
+// {
+//     for (int i = 0; i < database.size(); i++)
+//     {
+//         //for (int j = 0; j < database[i].size(); j++)
+//         {
+//         }
+//     }
+// }
+
+int main()
+{
+    question_answer_data Q;
+    for (int i = 0; i < 6; i++)
+    {
+        Q.accept_question_by_topic("Maths");
+    }
+    Q.display_all();
+    Q.display_all_unanswered();
+    Q.display_by_topic("Maths");
 }
