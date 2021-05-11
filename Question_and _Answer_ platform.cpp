@@ -20,7 +20,7 @@ public:
     }
     void display()
     {
-        cout << question << endl;
+        cout << question << '?' << endl;
         if (answered)
         {
             cout << answer << endl;
@@ -29,34 +29,22 @@ public:
         {
             cout << "This question is not answered" << endl;
         }
-    };
+    }
+    void accept_answer()
+    {
+        cout << question << '?' << endl;
+        cout << "Enter answer (End with '$')" << endl;
+        string line;
+        do
+        {
+            getline(cin, line);
+            answer += line;
+        } while (line != "");
+        answered = true;
+    }
 
     friend class question_answer_data;
 };
-
-// class topics
-// {
-//     string topic;
-
-//     vector<Question_Answer> data;
-
-//     void accept_questions_wrt_topic();
-
-//     void display_topic(string subject)
-//     {
-//         cout << topic << endl;
-//         for (int i = 0; i < data.size(); i++)
-//         {
-//             data[i].display();
-//         }
-//     }
-
-//     void display_by_topic_questions(string subject);
-
-//     void display_by_topic_answered(string subject);
-
-//     friend class question_answer_data;
-// };
 
 class question_answer_data
 {
@@ -66,6 +54,13 @@ class question_answer_data
 public:
     void accept_question_by_topic(string subject)
     {
+        cout << "Check whether your question has been added before:)" << endl;
+        display_by_topic(subject);
+        char already_added;
+        cout<<"Enter 'y' if your question was present in displayed list"<<endl;
+        cin>>already_added;
+        if(already_added=='y' || already_added=='Y')
+            return;
 
         int i = 0;
         bool found = false;
@@ -98,7 +93,6 @@ public:
             return;
         }
     }
-
 
     void display_by_topic(string subject)
     {
@@ -160,19 +154,29 @@ public:
 
     void display_all_unanswered()
     {
-        int count = 0;
+        int count = 0,question_number,topic_size,current_size = 0 ;
         char x;
         for (int i = database.size() - 1; i >= 0; i--)
-        {
-            for (int j = database[i].size() - 1; j >= 0; j--)
+        {   topic_size=database[i].size();
+            for (int j =topic_size - 1; j >= 0; j--)
             {
 
                 if (!database[i][j].answered)
                 {
-                    cout << database[i][j].question << endl;
+                    
                     count++;
+                    cout <<count<<" "<< database[i][j].question << endl;
                     if (count % 5 == 0)
-                    {
+                    {   cout <<"if want to answerany of these question type y(else type any other char)";
+                        cin >> x;
+                        if (x == 'y'|| x =='Y')
+                        {   
+                            cout<<"enter question number" << endl;
+                            cin >> question_number;
+
+                            database[i][question_number-current_size].accept_answer();
+                        }
+                         
                         cout << "For more database type y(else type any other char)" << endl;
                         cin >> x;
                         if (x == 'y' || x == 'Y')
@@ -184,9 +188,10 @@ public:
                     }
                 }
             }
+            current_size+=topic_size;
         }
     }
-
+    
     void display_all_answered()
     {
         int count = 0;
