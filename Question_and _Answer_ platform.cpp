@@ -57,9 +57,9 @@ public:
         cout << "Check whether your question has been added before:)" << endl;
         display_by_topic(subject);
         char already_added;
-        cout<<"Enter 'y' if your question was present in displayed list"<<endl;
-        cin>>already_added;
-        if(already_added=='y' || already_added=='Y')
+        cout << "Enter 'y' if your question was present in displayed list" << endl;
+        cin >> already_added;
+        if (already_added == 'y' || already_added == 'Y')
             return;
 
         int i = 0;
@@ -67,7 +67,7 @@ public:
 
         for (i = 0; i < topic.size(); i++)
         {
-            cout << " in outer loop" << endl;
+
             if (topic[i] == subject)
             {
 
@@ -96,8 +96,15 @@ public:
 
     void display_by_topic(string subject)
     {
+        if (topic.size() == 0)
+        {
+            cout << "Nothing to display" << endl;
+            return;
+        }
         int i = 0;
         int count = 0;
+
+        cout << "topic: " << subject << endl;
 
         for (i = 0; i < topic.size(); i++)
         {
@@ -154,29 +161,31 @@ public:
 
     void display_all_unanswered()
     {
-        int count = 0,question_number,topic_size,current_size = 0 ;
+        int count = 0, question_number, topic_size, current_size = 0;
         char x;
         for (int i = database.size() - 1; i >= 0; i--)
-        {   topic_size=database[i].size();
-            for (int j =topic_size - 1; j >= 0; j--)
+        {
+            topic_size = database[i].size();
+            for (int j = topic_size - 1; j >= 0; j--)
             {
 
                 if (!database[i][j].answered)
                 {
-                    
+
                     count++;
-                    cout <<count<<" "<< database[i][j].question << endl;
+                    cout << count << " " << database[i][j].question << '?' << endl;
                     if (count % 5 == 0)
-                    {   cout <<"if want to answerany of these question type y(else type any other char)";
+                    {
+                        cout << "if want to answerany of these question type y(else type any other char)";
                         cin >> x;
-                        if (x == 'y'|| x =='Y')
-                        {   
-                            cout<<"enter question number" << endl;
+                        if (x == 'y' || x == 'Y')
+                        {
+                            cout << "enter question number" << endl;
                             cin >> question_number;
 
-                            database[i][question_number-current_size].accept_answer();
+                            database[i][question_number - current_size].accept_answer();
                         }
-                         
+
                         cout << "For more database type y(else type any other char)" << endl;
                         cin >> x;
                         if (x == 'y' || x == 'Y')
@@ -188,10 +197,19 @@ public:
                     }
                 }
             }
-            current_size+=topic_size;
+            current_size += topic_size;
+        }
+        cout << "if want to answerany of these question type y(else type any other char)";
+        cin >> x;
+        if (x == 'y' || x == 'Y')
+        {
+            cout << "enter question number" << endl;
+            cin >> question_number;
+
+            database[0][question_number - current_size].accept_answer();
         }
     }
-    
+
     void display_all_answered()
     {
         int count = 0;
@@ -223,25 +241,11 @@ public:
     }
 };
 
-// void display_all_answered();
-
-// void accept_answer(int index, Question_Answer qna);
-// void question_answer_data ::display_all()
-// {
-//     for (int i = 0; i < database.size(); i++)
-//     {
-//         //for (int j = 0; j < database[i].size(); j++)
-//         {
-//         }
-//     }
-// }
-
 int main()
 {
     question_answer_data Q;
     for (int i = 0; i < 3; i++)
     {
-        cout << i << endl;
         Q.accept_question_by_topic("Maths");
         Q.accept_question_by_topic("Science");
     }
