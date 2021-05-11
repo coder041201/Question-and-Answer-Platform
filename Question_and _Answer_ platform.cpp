@@ -66,15 +66,21 @@ class question_answer_data
 public:
     void accept_question_by_topic(string subject)
     {
+
         int i = 0;
         bool found = false;
 
         for (i = 0; i < topic.size(); i++)
         {
+            cout << " in outer loop" << endl;
             if (topic[i] == subject)
             {
+
                 found = true;
-                break;
+                Question_Answer temp;
+                temp.accept_question();
+                database[i].push_back(temp);
+                return;
             }
         }
 
@@ -83,31 +89,32 @@ public:
             topic.push_back(subject);
             Question_Answer temp;
             temp.accept_question();
-            database[i].push_back(temp);
-            return;
-        }
-        else
-        {
-            Question_Answer temp;
-            temp.accept_question();
-            database[i].push_back(temp);
+
+            vector<Question_Answer> t;
+            t.push_back(temp);
+
+            database.push_back(t);
+
             return;
         }
     }
 
+
     void display_by_topic(string subject)
     {
         int i = 0;
+        int count = 0;
 
         for (i = 0; i < topic.size(); i++)
         {
             if (topic[i] == subject)
                 break;
         }
-        for (int j = 0; j < database[i].size(); j++)
+        for (int j = database[i].size() - 1; j >= 0; j--)
         {
             database[i][j].display();
-            if (j % 5 == 0)
+            count++;
+            if (count % 5 == 0)
             {
                 cout << "For more questions type y (else type any other char)" << endl;
                 char x;
@@ -127,7 +134,7 @@ public:
         int count = 0;
         for (int i = 0; i < database.size(); i++)
         {
-            for (int j = 0; j < database[i].size(); j++)
+            for (int j = database[i].size() - 1; j >= 0; j--)
             {
                 database[i][j].display();
 
@@ -155,18 +162,18 @@ public:
     {
         int count = 0;
         char x;
-        for (int i = 0; i < database.size(); i++)
+        for (int i = database.size() - 1; i >= 0; i--)
         {
-            for (int j = 0; database[i].size(); j++)
+            for (int j = database[i].size() - 1; j >= 0; j--)
             {
 
                 if (!database[i][j].answered)
                 {
-                    cout << database[i][j].question;
+                    cout << database[i][j].question << endl;
                     count++;
                     if (count % 5 == 0)
                     {
-                        cout << "For more database type y(else type any other char)";
+                        cout << "For more database type y(else type any other char)" << endl;
                         cin >> x;
                         if (x == 'y' || x == 'Y')
                         {
@@ -184,9 +191,9 @@ public:
     {
         int count = 0;
         char x;
-        for (int i = 0; i < database.size(); i++)
+        for (int i = database.size() - 1; i >= 0; i--)
         {
-            for (int j = 0; j < database[i].size(); j++)
+            for (int j = database[i].size() - 1; j >= 0; j--)
             {
                 if (database[i][j].answered)
                 {
@@ -227,9 +234,11 @@ public:
 int main()
 {
     question_answer_data Q;
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 3; i++)
     {
+        cout << i << endl;
         Q.accept_question_by_topic("Maths");
+        Q.accept_question_by_topic("Science");
     }
     Q.display_all();
     Q.display_all_unanswered();
