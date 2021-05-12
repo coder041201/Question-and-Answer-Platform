@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <string>
+
 using namespace std;
 
+//Passwpord for Admin mode
 #define password "H15k"
 
 //Class question and answer
@@ -83,7 +85,7 @@ public:
         cout << "Check whether your question has been added before:)" << endl;
         display_by_topic(subject);
         char already_added;
-        cout << "Enter 'y' if your question was present in displayed list" << endl;
+        cout << "Enter 'y' if your question was present in displayed list (else enter any other character to continue)" << endl;
         cin >> already_added;
 
         //returning if question already present
@@ -152,6 +154,7 @@ public:
                 break;
         }
 
+        //When given topic is not present in vector
         if (i == topic.size())
         {
             cout << "Nothing to display" << endl;
@@ -243,6 +246,8 @@ public:
 
         //Variable for keeping track of displayed questions
         int number_of_unanswerd = 0;
+
+        //Vector to store indices
         vector<int> unanswerd_j_index;
         vector<int> unanswerd_i_index;
 
@@ -255,11 +260,15 @@ public:
                 //checking whether answered or not
                 if (!database[i][j].answered)
                 {
+                    //Adding indices of unanswered question
                     unanswerd_j_index.push_back(j);
                     unanswerd_i_index.push_back(i);
+
+                    //Updating count
                     number_of_unanswerd++;
+
                     //Displaying questions
-                    cout << number_of_unanswerd << " " << database[i][j].question << '?' << endl;
+                    cout << "Q." << number_of_unanswerd << " " << database[i][j].question << '?' << endl;
 
                     //Displaying only 5 questions at a time
                     if (number_of_unanswerd % 5 == 0)
@@ -328,8 +337,11 @@ public:
                 {
                     database[i][j].display();
                     count++;
+
+                    //Displaying only 5 questions at a time
                     if (count % 5 == 0)
                     {
+                        //Asking user whether he want to see more
                         cout << "For more questions type y (else type any other char)";
                         cin >> x;
                         if (x == 'y' || 'Y')
@@ -346,39 +358,60 @@ public:
         }
     }
 
+    //Removing particular element from matrix
     void remove_ques()
     {
-        //string password = "abc";
-        string pass, subject;
+        string subject;
         int index;
 
+        //Asking for topic
         cout << "Enter the topic " << endl;
         cin >> subject;
 
-        //Q.display_by_topic(subject);
+        //When topic vector is empty
         if (topic.size() == 0)
         {
             cout << "Nothing to display" << endl;
             return;
         }
+
         int i = 0;
+
+        //Displaying topic name
         cout << "topic: " << subject << endl;
+
+        //Iterating topic vector till given topic is found
         for (i = 0; i < topic.size(); i++)
         {
             if (topic[i] == subject)
                 break;
         }
-        for (int j = database[i].size() - 1; j >= 0; j--)
+
+        //When given topic is not found
+        if (i == topic.size())
         {
+            cout << "Nothing to display" << endl;
+            return;
+        }
+
+        //if given topic found
+        for (int j = 0; j < database[i].size(); j++)
+        {
+            //Displaying all questions of that topic with index
             cout << "Q." << j;
             database[i][j].display();
         }
+
+        //Accepting index for which QnA to be removed
         cout << "Enter the index of the Question you want to delete" << endl;
         cin >> index;
+
+        //Using inbuilt vector function to remove element
         database[i].erase(database[i].begin() + index);
         cout << "Question successfully Removed" << endl;
     }
 
+    //Removing answer of particular question of specific topic
     void remove_ans()
     {
 
@@ -386,55 +419,82 @@ public:
 
         string subject;
 
-        cout << "enter the topic" << endl;
+        // Asking for topic
+        cout << "Enter the topic" << endl;
         cin >> subject;
+
+        //When topic vector is empty
         if (topic.size() == 0)
         {
             cout << "Nothing to display" << endl;
             return;
         }
+
         int i = 0;
+
+        //Displying topic
         cout << "topic: " << subject << endl;
 
+        //Iterating topic vector till given topic is found
         for (i = 0; i < topic.size(); i++)
         {
             if (topic[i] == subject)
                 break;
         }
-        for (int j = database[i].size() - 1; j >= 0; j--)
+
+        //When given topic is not found
+        if (i == topic.size())
         {
+            cout << "Nothing to display" << endl;
+            return;
+        }
+
+        //if given topic found
+        for (int j = 0; j < database[i].size(); j++)
+        {
+            //Displaying all answered questions
             if (database[i][j].answered = true)
             {
                 cout << "Q." << j;
                 database[i][j].display();
             }
         }
-        cout << "enter index of the question of which you want to delete the answer" << endl;
+
+        //Asking admin to enter the index for which answer to be removed
+        cout << "Enter index of the question of which you want to delete the answer" << endl;
         cin >> index;
-        database[i][index].answer = "";
+
+        //Setting answer to null of given index
+        database[i][index].answer = "\0";
+
+        //Swetting boolean value of given index to false
         database[i][index].answered = false;
+
         cout << "Answer Successfully Removed" << endl;
     }
 };
 
 int main()
 {
+    //Creating object of main database
     question_answer_data Q;
 
+    //outer do while loop
     int choice;
     do
     {
-
+        //Displaying outer MENU
         cout << "Enter 0 if you are user" << endl;
         cout << "OR 1 if you want to access admin function" << endl;
-        cout << "(type any key no. to exit)" << endl;
+        cout << "(type any no. key to exit)" << endl;
 
         cin >> choice;
 
+        //User mode
         if (choice == 0)
         {
+            //Inner do while loop 1
             int ch;
-
             do
             {
                 //Displaying user MENU
@@ -451,21 +511,26 @@ int main()
 
                 cin >> ch;
 
+                //Inner switch case1 (User)
                 switch (ch)
                 {
                 case 1:
                 {
+                    //Accepting topic from user
                     cout << "Enter topic" << endl;
                     string topic;
                     cin >> topic;
+
                     Q.accept_question_by_topic(topic);
                 }
                 break;
                 case 2:
                 {
+                    //Accepting topic from user
                     cout << "Enter topic" << endl;
                     string topic;
                     cin >> topic;
+
                     Q.display_by_topic(topic);
                 }
                 break;
@@ -496,21 +561,26 @@ int main()
             } while (ch != 6);
         }
 
-        if (choice == 1)
+        //Admin mode
+        else if (choice == 1)
         {
             string pass;
 
+            //Asking user to enter password
             cout << "Enter password to access admin functions" << endl;
 
             cin >> pass;
 
+            //Providing access only if password is correct
             if (pass == password)
             {
+
+                //Inner do while loop 2
                 int ch;
 
                 do
                 {
-
+                    //Displaying admin menu
                     cout << endl;
                     cout << "Press 1 to remove question by topic" << endl;
                     cout << "Press 2 to remove answer of question of specific topic" << endl;
@@ -520,6 +590,7 @@ int main()
 
                     cin >> ch;
 
+                    //Inner switch case 2 (Admin mode)
                     switch (ch)
                     {
                     case 1:
@@ -548,6 +619,10 @@ int main()
             {
                 cout << "Wrong password... access denied!!" << endl;
             }
+        }
+        else
+        {
+            cout << "Exiting" << endl;
         }
 
     } while (choice == 0 || choice == 1);
