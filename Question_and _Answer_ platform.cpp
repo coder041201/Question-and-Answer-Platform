@@ -85,6 +85,7 @@ public:
         cout << "Check whether your question has been added before:)" << endl;
         display_by_topic(subject);
         char already_added;
+        cout << endl;
         cout << "Enter 'y' if your question was present in displayed list (else enter any other character to continue)" << endl;
         cin >> already_added;
 
@@ -173,6 +174,8 @@ public:
             //Displaying only 5 QnA at a time
             if (count % 5 == 0)
             {
+                cout << endl;
+
                 //Asking user whether he want to see more
                 cout << "For more questions type y (else type any other char)" << endl;
                 char x;
@@ -208,6 +211,7 @@ public:
                 //Displaying only 5 QnA at a time
                 if (count % 5 == 0)
                 {
+                    cout << endl;
 
                     //Asking user whether he want to see more
                     cout << "For more questions type y (else type any other char)" << endl;
@@ -273,6 +277,8 @@ public:
                     //Displaying only 5 questions at a time
                     if (number_of_unanswerd % 5 == 0)
                     {
+                        cout << endl;
+
                         //Asking user whether he wants to add answer to any question
                         cout << "if want to answer any of these question type y(else type any other char)";
                         cin >> x;
@@ -292,6 +298,8 @@ public:
                         {
                             cout << "For more questions type y (else type any other char)" << endl;
                             cin >> x;
+
+                            cout << endl;
                         }
                         if (x == 'y' || x == 'Y')
                         {
@@ -306,6 +314,7 @@ public:
         //For last questions if any
         if (number_of_unanswerd % 5 != 0)
         {
+            cout << endl;
             cout << "if want to answer any of these question type y(else type any other char)";
             cin >> x;
 
@@ -516,6 +525,7 @@ int main()
                 {
                 case 1:
                 {
+                    cout << endl;
                     //Accepting topic from user
                     cout << "Enter topic" << endl;
                     string topic;
@@ -552,6 +562,7 @@ int main()
                 case 6:
                 {
                     cout << "Exiting" << endl;
+                    cout << endl;
                 }
                 break;
                 default:
@@ -565,6 +576,7 @@ int main()
         else if (choice == 1)
         {
             string pass;
+            cout << endl;
 
             //Asking user to enter password
             cout << "Enter password to access admin functions" << endl;
@@ -606,6 +618,7 @@ int main()
                     case 3:
                     {
                         cout << "Exiting" << endl;
+                        cout << endl;
                     }
                     break;
                     default:
