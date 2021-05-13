@@ -1,3 +1,18 @@
+/*
+*DSA Mini Project
+
+*Problem Statement:
+    To implement an interactive Question and Answer platform where anyone can Ask and Answer 
+    Questions anonymously.
+
+*Contribuitors:
+    Roll no.    Name
+    2303        Aparna Agrawal
+    2312        Hardiki Sonchhatra
+    2317        Khushbu Bora
+    2326        Sudha Chintake
+*/
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -7,21 +22,20 @@ using namespace std;
 //Passwpord for Admin mode
 #define password "H15k"
 
+#define questions_per_page 5
+
 //Class question and answer
 class Question_Answer
 {
     string question;
-
-public:
-    //boolean variable to check whether question is answered or not
-    string answer;
-    bool answered;
-
     //Taking question input
     void accept_question()
     {
+        cout << endl;
+
         cout << "Enter question (End with '?')" << endl;
 
+        cin.ignore();
         //using getline to input line and using '?' as delimenator
         getline(cin, question, '?');
 
@@ -35,12 +49,13 @@ public:
         cout << question << '?' << endl;
         if (answered)
         {
-            cout << answer << endl;
+            cout << "Ans: " << answer << endl;
         }
         else
         {
             cout << "This question is not answered" << endl;
         }
+        cout << endl;
     }
 
     //Inputting answer
@@ -49,10 +64,7 @@ public:
         cout << question << '?' << endl;
         cout << "Enter answer (press enter 2 times when you are done)" << endl;
 
-        char x;
-        cin >> x; //Extra '\n'
-
-        answer = x;
+        cin.ignore(); //Extra '\n'
 
         string line;
         do
@@ -62,6 +74,11 @@ public:
         } while (line != "");
         answered = true;
     }
+
+public:
+    //boolean variable to check whether question is answered or not
+    string answer;
+    bool answered;
 
     //making question_answer_data as a friend
     friend class question_answer_data;
@@ -83,15 +100,19 @@ public:
 
         //Asking user to check database , so no repeated questions
         cout << "Check whether your question has been added before:)" << endl;
-        display_by_topic(subject);
-        char already_added;
         cout << endl;
-        cout << "Enter 'y' if your question was present in displayed list (else enter any other character to continue)" << endl;
-        cin >> already_added;
 
-        //returning if question already present
-        if (already_added == 'y' || already_added == 'Y')
-            return;
+        if (display_by_topic(subject) != 0)
+        {
+            char already_added;
+            cout << endl;
+            cout << "Enter 'y' if your question was present in displayed list (else enter any other character to continue)" << endl;
+            cin >> already_added;
+
+            //returning if question already present
+            if (already_added == 'y' || already_added == 'Y')
+                return;
+        }
 
         //iterator variable
         int i = 0;
@@ -133,16 +154,18 @@ public:
     }
 
     //Displaying questions by topic
-    void display_by_topic(string subject)
+    int display_by_topic(string subject)
     {
         //Displaying topic name
-        cout << "topic: " << subject << endl;
+        cout << endl;
+        cout << "Topic: " << subject << endl;
+        cout << endl;
 
         //if there are no questions present
         if (topic.size() == 0)
         {
             cout << "Nothing to display" << endl;
-            return;
+            return 0;
         }
 
         int i = 0;
@@ -159,7 +182,7 @@ public:
         if (i == topic.size())
         {
             cout << "Nothing to display" << endl;
-            return;
+            return 0;
         }
 
         //Displaying QnA for given topic
@@ -171,8 +194,8 @@ public:
             //Keeping count of displayed questions
             count++;
 
-            //Displaying only 5 QnA at a time
-            if (count % 5 == 0)
+            //Displaying only previously defined number of QnA at a time
+            if (count % questions_per_page == 0 && j > 0)
             {
                 cout << endl;
 
@@ -189,6 +212,7 @@ public:
                     break;
             }
         }
+        return 1;
     }
 
     //Displaying all QnA
@@ -208,8 +232,8 @@ public:
 
                 count++;
 
-                //Displaying only 5 QnA at a time
-                if (count % 5 == 0)
+                //Displaying only previously defined no. of QnA at a time
+                if (count % questions_per_page == 0 && i > 0 && j > 0)
                 {
                     cout << endl;
 
@@ -234,17 +258,9 @@ public:
     //Displaying all unanswered questions and asking user for answers
     void display_all_unanswered()
     {
-        //Keeping count of displayed questions
-        int count = 0;
 
         //question no. input from user to which he/she wants to answer
         int question_number;
-
-        //matrix rows
-        int topic_size;
-
-        //storing size up to a current displayed QnA
-        int current_size = 0;
 
         char x;
 
@@ -258,8 +274,7 @@ public:
         //Traversing through QnA matrix
         for (int i = database.size() - 1; i >= 0; i--)
         {
-            topic_size = database[i].size();
-            for (int j = topic_size - 1; j >= 0; j--)
+            for (int j = database[i].size() - 1; j >= 0; j--)
             {
                 //checking whether answered or not
                 if (!database[i][j].answered)
@@ -274,20 +289,22 @@ public:
                     //Displaying questions
                     cout << "Q." << number_of_unanswerd << " " << database[i][j].question << '?' << endl;
 
-                    //Displaying only 5 questions at a time
-                    if (number_of_unanswerd % 5 == 0)
+                    //Displaying only previously defined no. of questions at a time
+                    if (number_of_unanswerd % questions_per_page == 0)
                     {
                         cout << endl;
 
                         //Asking user whether he wants to add answer to any question
-                        cout << "if want to answer any of these question type y(else type any other char)";
+                        cout << "If you want to answer any of these question type y (else type any other char)";
                         cin >> x;
 
                         //Accepting answer
                         if (x == 'y' || x == 'Y')
                         {
-                            cout << "enter question number" << endl;
+                            cout << "Enter question number" << endl;
                             cin >> question_number;
+
+                            cout << endl;
 
                             //Accessing particular QnA through question no. and size and accepting ans
                             database[unanswerd_i_index[question_number - 1]][unanswerd_j_index[question_number - 1]].accept_answer();
@@ -301,10 +318,13 @@ public:
 
                             cout << endl;
                         }
+
+                        //If user wants to see more Questions
                         if (x == 'y' || x == 'Y')
                         {
                             continue;
                         }
+
                         else
                             break;
                     }
@@ -312,19 +332,25 @@ public:
             }
         }
         //For last questions if any
-        if (number_of_unanswerd % 5 != 0)
+        if (number_of_unanswerd % questions_per_page != 0)
         {
             cout << endl;
-            cout << "if want to answer any of these question type y(else type any other char)";
+            cout << "If you want to answer any of these question type y (else type any other char)";
             cin >> x;
 
             if (x == 'y' || x == 'Y')
             {
-                cout << "enter question number" << endl;
+                cout << "Enter question number" << endl;
                 cin >> question_number;
 
                 database[0][unanswerd_j_index[question_number - 1]].accept_answer();
             }
+        }
+
+        //When all questions are answered
+        if (number_of_unanswerd == 0)
+        {
+            cout << "No unanswered questions!!" << endl;
         }
     }
 
@@ -340,6 +366,7 @@ public:
         {
             for (int j = database[i].size() - 1; j >= 0; j--)
             {
+                cout << endl;
 
                 //Displaying if answered
                 if (database[i][j].answered)
@@ -347,8 +374,8 @@ public:
                     database[i][j].display();
                     count++;
 
-                    //Displaying only 5 questions at a time
-                    if (count % 5 == 0)
+                    //Displaying only previously defined no. of questions at a time
+                    if (count % questions_per_page == 0)
                     {
                         //Asking user whether he want to see more
                         cout << "For more questions type y (else type any other char)";
@@ -386,8 +413,12 @@ public:
 
         int i = 0;
 
+        cout << endl;
+
         //Displaying topic name
-        cout << "topic: " << subject << endl;
+        cout << "Topic: " << subject << endl;
+
+        cout << endl;
 
         //Iterating topic vector till given topic is found
         for (i = 0; i < topic.size(); i++)
@@ -407,7 +438,7 @@ public:
         for (int j = 0; j < database[i].size(); j++)
         {
             //Displaying all questions of that topic with index
-            cout << "Q." << j;
+            cout << "Q." << j << " ";
             database[i][j].display();
         }
 
@@ -429,7 +460,7 @@ public:
         string subject;
 
         // Asking for topic
-        cout << "Enter the topic" << endl;
+        cout << "Enter the Topic" << endl;
         cin >> subject;
 
         //When topic vector is empty
@@ -441,8 +472,12 @@ public:
 
         int i = 0;
 
+        cout << endl;
+
         //Displying topic
-        cout << "topic: " << subject << endl;
+        cout << "Topic: " << subject << endl;
+
+        cout << endl;
 
         //Iterating topic vector till given topic is found
         for (i = 0; i < topic.size(); i++)
@@ -464,7 +499,7 @@ public:
             //Displaying all answered questions
             if (database[i][j].answered = true)
             {
-                cout << "Q." << j;
+                cout << "Q." << j << " ";
                 database[i][j].display();
             }
         }
@@ -493,9 +528,13 @@ int main()
     do
     {
         //Displaying outer MENU
+        cout << endl;
+        cout << "====================================================================================" << endl;
         cout << "Enter 0 if you are user" << endl;
         cout << "OR 1 if you want to access admin function" << endl;
         cout << "(type any no. key to exit)" << endl;
+        cout << "=====================================================================================" << endl;
+        cout << endl;
 
         cin >> choice;
 
@@ -506,16 +545,18 @@ int main()
             int ch;
             do
             {
-                //Displaying user MENU
                 cout << endl;
-                cout << "MENU" << endl;
+                //Displaying user MENU
+                cout << "==============================================================================" << endl;
+                cout << "************MENU************" << endl;
                 cout << "1.Add new question of particular topic" << endl;
                 cout << "2.Display questions and answers of specific topic" << endl;
                 cout << "3.Display all questions and answers" << endl;
                 cout << "4.Display all answered questions (with their answers)" << endl;
                 cout << "5.Display all unanswered questions (also add their answers if you want to)" << endl;
                 cout << "6.Exit" << endl;
-
+                cout << "==============================================================================" << endl;
+                cout << endl;
                 cout << "Enter your choice" << endl;
 
                 cin >> ch;
@@ -527,7 +568,7 @@ int main()
                 {
                     cout << endl;
                     //Accepting topic from user
-                    cout << "Enter topic" << endl;
+                    cout << "Enter Topic" << endl;
                     string topic;
                     cin >> topic;
 
@@ -537,7 +578,7 @@ int main()
                 case 2:
                 {
                     //Accepting topic from user
-                    cout << "Enter topic" << endl;
+                    cout << "Enter Topic" << endl;
                     string topic;
                     cin >> topic;
 
@@ -579,7 +620,7 @@ int main()
             cout << endl;
 
             //Asking user to enter password
-            cout << "Enter password to access admin functions" << endl;
+            cout << "Enter password to access admin functions (you only have one chance)" << endl;
 
             cin >> pass;
 
@@ -592,11 +633,14 @@ int main()
 
                 do
                 {
-                    //Displaying admin menu
                     cout << endl;
+                    //Displaying admin menu
+                    cout << "=====================================================================================" << endl;
                     cout << "Press 1 to remove question by topic" << endl;
                     cout << "Press 2 to remove answer of question of specific topic" << endl;
                     cout << "Press 3 to exit" << endl;
+                    cout << "=====================================================================================" << endl;
+                    cout << endl;
 
                     cout << "Enter choice" << endl;
 
@@ -628,6 +672,7 @@ int main()
                 } while (ch != 3);
             }
 
+            //When password is wrong...(no multiple chance for correct password)
             else
             {
                 cout << "Wrong password... access denied!!" << endl;
@@ -640,3 +685,7 @@ int main()
 
     } while (choice == 0 || choice == 1);
 }
+
+/*
+OUTPUT
+*/
