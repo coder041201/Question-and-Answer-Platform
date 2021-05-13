@@ -1,10 +1,8 @@
 /*
 *DSA Mini Project
-
 *Problem Statement:
     To implement an interactive Question and Answer platform where anyone can Ask and Answer 
     Questions anonymously.
-
 *Contribuitors:
     Roll no.    Name
     2303        Aparna Agrawal
@@ -216,13 +214,14 @@ public:
     }
 
     //Displaying all QnA
-    void display_all()
+void display_all()
     {
         //Keeping count of displayed questions
         int count = 0;
-
+        //flag to come out of outer loop
+        int flag = 0; 
         //Traversing through matrix
-        for (int i = 0; i < database.size(); i++)
+      for (int i = 0; i < database.size(); i++)
         {
             for (int j = database[i].size() - 1; j >= 0; j--)
             {
@@ -247,22 +246,24 @@ public:
                         continue;
                     }
                     else
-                    {
+                    {   flag = 1; 
                         break;
                     }
                 }
             }
+            if(flag == 1) break;
         }
     }
 
     //Displaying all unanswered questions and asking user for answers
-    void display_all_unanswered()
-    {
-
+void display_all_unanswered()
+    {   
         //question no. input from user to which he/she wants to answer
         int question_number;
 
         char x;
+        //flag to come out of outer loop
+        int flag = 0;
 
         //Variable for keeping track of displayed questions
         int number_of_unanswerd = 0;
@@ -326,10 +327,12 @@ public:
                         }
 
                         else
+                            flag= 1;
                             break;
                     }
                 }
             }
+             if(flag == 1) break;
         }
         //For last questions if any
         if (number_of_unanswerd % questions_per_page != 0)
@@ -360,7 +363,8 @@ public:
         //Keeping count
         int count = 0;
         char x;
-
+        //flag to come out of outer loop
+        int flag = 0; 
         //Traversing through Qna matrix
         for (int i = database.size() - 1; i >= 0; i--)
         {
@@ -385,12 +389,13 @@ public:
                             continue;
                         }
                         else
-                        {
+                        {   flag = 1; 
                             break;
                         }
                     }
                 }
             }
+            if(flag == 1) break;
         }
     }
 
