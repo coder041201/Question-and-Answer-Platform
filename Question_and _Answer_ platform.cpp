@@ -17,15 +17,17 @@
 
 using namespace std;
 
-//Passwpord for Admin mode
+//Password for Admin mode
 #define password "H15k"
 
+//For number of questions to be displayed per page
 #define questions_per_page 5
 
 //Class question and answer
 class Question_Answer
 {
     string question;
+
     //Taking question input
     void accept_question()
     {
@@ -34,6 +36,7 @@ class Question_Answer
         cout << "Enter question (End with '?')" << endl;
 
         cin.ignore();
+
         //using getline to input line and using '?' as delimenator
         getline(cin, question, '?');
 
@@ -65,17 +68,22 @@ class Question_Answer
         cin.ignore(); //Extra '\n'
 
         string line;
+
+        //Multiple line input
         do
         {
             getline(cin, line);
             answer += line;
         } while (line != "");
+
+        //Setting answered as true
         answered = true;
     }
 
 public:
-    //boolean variable to check whether question is answered or not
     string answer;
+
+    //boolean variable to check whether question is answered or not
     bool answered;
 
     //making question_answer_data as a friend
@@ -92,65 +100,6 @@ class question_answer_data
     vector<vector<Question_Answer>> database;
 
 public:
-    //Accepting topicwise questions
-    void accept_question_by_topic(string subject)
-    {
-
-        //Asking user to check database , so no repeated questions
-        cout << "Check whether your question has been added before:)" << endl;
-        cout << endl;
-
-        if (display_by_topic(subject) != 0)
-        {
-            char already_added;
-            cout << endl;
-            cout << "Enter 'y' if your question was present in displayed list (else enter any other character to continue)" << endl;
-            cin >> already_added;
-
-            //returning if question already present
-            if (already_added == 'y' || already_added == 'Y')
-                return;
-        }
-
-        //iterator variable
-        int i = 0;
-
-        //boolean variable to check topic is already present or not
-        bool found = false;
-
-        for (i = 0; i < topic.size(); i++)
-        {
-
-            //If topic found, simply adding question to the vector
-            if (topic[i] == subject)
-            {
-                found = true;
-                Question_Answer temp;
-                temp.accept_question();
-                database[i].push_back(temp);
-                return;
-            }
-        }
-
-        //if topic not found
-        if (!found)
-        {
-            //Adding new topic
-            topic.push_back(subject);
-
-            //Adding new question to given topic
-            Question_Answer temp;
-            temp.accept_question();
-
-            //creating temprory vector to push in database
-            vector<Question_Answer> t;
-            t.push_back(temp);
-            database.push_back(t);
-
-            return;
-        }
-    }
-
     //Displaying questions by topic
     int display_by_topic(string subject)
     {
@@ -213,15 +162,78 @@ public:
         return 1;
     }
 
+    //Accepting topicwise questions
+    void accept_question_by_topic(string subject)
+    {
+
+        //Asking user to check database , so no repeated questions
+        cout << "Check whether your question has been added before:)" << endl;
+        cout << endl;
+
+        if (display_by_topic(subject) != 0)
+        {
+            char already_added;
+            cout << endl;
+            cout << "Enter 'y' if your question was present in displayed list (else enter any other character to continue)" << endl;
+            cin >> already_added;
+
+            //returning if question already present
+            if (already_added == 'y' || already_added == 'Y')
+                return;
+        }
+
+        //iterator variable
+        int i = 0;
+
+        //boolean variable to check topic is already present or not
+        bool found = false;
+
+        for (i = 0; i < topic.size(); i++)
+        {
+
+            //If topic found, simply adding question to the vector
+            if (topic[i] == subject)
+            {
+                found = true;
+                Question_Answer temp;
+
+                temp.accept_question();
+
+                database[i].push_back(temp);
+                return;
+            }
+        }
+
+        //if topic not found
+        if (!found)
+        {
+            //Adding new topic
+            topic.push_back(subject);
+
+            //Adding new question to given topic
+            Question_Answer temp;
+            temp.accept_question();
+
+            //creating temprory vector to push in database
+            vector<Question_Answer> t;
+            t.push_back(temp);
+            database.push_back(t);
+
+            return;
+        }
+    }
+
     //Displaying all QnA
-void display_all()
+    void display_all()
     {
         //Keeping count of displayed questions
         int count = 0;
+
         //flag to come out of outer loop
-        int flag = 0; 
+        int flag = 0;
+
         //Traversing through matrix
-      for (int i = 0; i < database.size(); i++)
+        for (int i = 0; i < database.size(); i++)
         {
             for (int j = database[i].size() - 1; j >= 0; j--)
             {
@@ -246,22 +258,26 @@ void display_all()
                         continue;
                     }
                     else
-                    {   flag = 1; 
+                    {
+                        flag = 1;
                         break;
                     }
                 }
             }
-            if(flag == 1) break;
+            if (flag == 1)
+                break;
         }
     }
 
     //Displaying all unanswered questions and asking user for answers
-void display_all_unanswered()
-    {   
+    void display_all_unanswered()
+    {
         //question no. input from user to which he/she wants to answer
         int question_number;
 
+        //To input whether to ans(y) or not
         char x;
+
         //flag to come out of outer loop
         int flag = 0;
 
@@ -318,21 +334,22 @@ void display_all_unanswered()
                             cin >> x;
 
                             cout << endl;
-                        }
 
-                        //If user wants to see more Questions
-                        if (x == 'y' || x == 'Y')
-                        {
-                            continue;
-                        }
+                            //If user wants to see more Questions
+                            if (x == 'y' || x == 'Y')
+                            {
+                                continue;
+                            }
 
-                        else
-                            flag= 1;
+                            else
+                                flag = 1;
                             break;
+                        }
                     }
                 }
             }
-             if(flag == 1) break;
+            if (flag == 1)
+                break;
         }
         //For last questions if any
         if (number_of_unanswerd % questions_per_page != 0)
@@ -362,10 +379,14 @@ void display_all_unanswered()
     {
         //Keeping count
         int count = 0;
+
+        //For response of user to view more questions with their answers
         char x;
+
         //flag to come out of outer loop
-        int flag = 0; 
-        //Traversing through Qna matrix
+        int flag = 0;
+
+        //Traversing through QnA matrix
         for (int i = database.size() - 1; i >= 0; i--)
         {
             for (int j = database[i].size() - 1; j >= 0; j--)
@@ -389,18 +410,20 @@ void display_all_unanswered()
                             continue;
                         }
                         else
-                        {   flag = 1; 
+                        {
+                            flag = 1;
                             break;
                         }
                     }
                 }
             }
-            if(flag == 1) break;
+            if (flag == 1)
+                break;
         }
     }
 
     //Removing particular element from matrix
-    void remove_ques()
+    void remove_question()
     {
         string subject;
         int index;
@@ -452,7 +475,7 @@ void display_all_unanswered()
         cin >> index;
 
         //Using inbuilt vector function to remove element
-        database[i].erase(database[i].begin() + index);
+        database[i].erase(database[i].begin() + index); //Time complexity : O(n) + O(m)
         cout << "Question successfully Removed" << endl;
     }
 
@@ -516,7 +539,7 @@ void display_all_unanswered()
         //Setting answer to null of given index
         database[i][index].answer = "\0";
 
-        //Swetting boolean value of given index to false
+        //Setting boolean value  answered of question at required index to false
         database[i][index].answered = false;
 
         cout << "Answer Successfully Removed" << endl;
@@ -535,9 +558,9 @@ int main()
         //Displaying outer MENU
         cout << endl;
         cout << "====================================================================================" << endl;
-        cout << "Enter 0 if you are user" << endl;
-        cout << "OR 1 if you want to access admin function" << endl;
-        cout << "(type any no. key to exit)" << endl;
+        cout << "If you are User     --> Press 0" << endl;
+        cout << "To enter Admin mode --> Press 1" << endl;
+        cout << "(Type any no. key to Exit)" << endl;
         cout << "=====================================================================================" << endl;
         cout << endl;
 
@@ -636,6 +659,8 @@ int main()
                 //Inner do while loop 2
                 int ch;
 
+                cout << "YOU ARE IN ADMIN MODE" << endl;
+
                 do
                 {
                     cout << endl;
@@ -656,7 +681,7 @@ int main()
                     {
                     case 1:
                     {
-                        Q.remove_ques();
+                        Q.remove_question();
                     }
                     break;
                     case 2:
