@@ -462,12 +462,11 @@ public:
             cout << "Nothing to display" << endl;
             return;
         }
-
         //if given topic found
         for (int j = 0; j < database[i].size(); j++)
         {
             //Displaying all questions of that topic with index
-            cout << "Q." << j+1 << " ";
+            cout << "Q." << j + 1 << " ";
             database[i][j].display();
         }
 
@@ -476,7 +475,7 @@ public:
         cin >> index;
 
         //Using inbuilt vector function to remove element
-        database[i].erase(database[i].begin() + index-1); //Time complexity : O(n) + O(m)
+        database[i].erase(database[i].begin() + index - 1); //Time complexity : O(n) + O(m)
         cout << "Question successfully Removed" << endl;
     }
 
@@ -528,7 +527,7 @@ public:
             //Displaying all answered questions
             if (database[i][j].answered = true)
             {
-                cout << "Q." << j+1 << " ";
+                cout << "Q." << j + 1 << " ";
                 database[i][j].display();
             }
         }
@@ -538,10 +537,10 @@ public:
         cin >> index;
 
         //Setting answer to null of given index
-        database[i][index-1].answer = "\0";
+        database[i][index - 1].answer = "\0";
 
         //Setting boolean value  answered of question at required index to false
-        database[i][index-1].answered = false;
+        database[i][index - 1].answered = false;
 
         cout << "Answer Successfully Removed" << endl;
     }
@@ -719,4 +718,655 @@ int main()
 
 /*
 OUTPUT
+
+==================================================================================== 
+If you are User     --> Press 0
+To enter Admin mode --> Press 1
+(Type any no. key to Exit)
+=====================================================================================
+
+0
+
+==============================================================================       
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================       
+
+Enter your choice
+1
+
+Enter Topic
+DSA
+Check whether your question has been added before:)
+
+
+Topic: DSA
+
+Nothing to display
+
+Enter question (End with '?')
+What is an algorithm?
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+1
+
+Enter Topic
+DSA
+Check whether your question has been added before:)
+
+
+Topic: DSA
+
+What is an algorithm?
+This question is not answered
+
+
+Enter 'y' if your question was present in displayed list (else enter any other character to continue)
+n
+
+Enter question (End with '?')
+What is difference between arrays and vectors?
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+1
+
+Enter Topic
+DSA
+Check whether your question has been added before:)
+
+
+Topic: DSA
+
+What is difference between arrays and vectors?
+This question is not answered
+
+What is an algorithm?
+This question is not answered
+
+
+Enter 'y' if your question was present in displayed list (else enter any other character to continue)
+n
+
+Enter question (End with '?')
+What is worst case time complexity of quick sort?
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+1
+
+Enter Topic
+DSA
+Check whether your question has been added before:)
+
+
+Topic: DSA
+
+What is worst case time complexity of quick sort?
+This question is not answered
+
+What is difference between arrays and vectors?
+This question is not answered
+
+What is an algorithm?
+This question is not answered
+
+
+Enter 'y' if your question was present in displayed list (else enter any other character to continue)
+n
+
+Enter question (End with '?')
+Algorithm for recursive binary search?
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+1
+
+Enter Topic
+OOP
+Check whether your question has been added before:)
+
+
+Topic: OOP
+
+Nothing to display
+
+Enter question (End with '?')
+What are objects?
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+1
+
+Enter Topic
+OOP
+Check whether your question has been added before:)
+
+
+Topic: OOP
+
+What are objects?
+This question is not answered
+
+
+Enter 'y' if your question was present in displayed list (else enter any other character to continue)
+n
+
+Enter question (End with '?')
+What is Inheritance?
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+1
+
+Enter Topic
+OOP
+Check whether your question has been added before:)
+
+
+Topic: OOP
+
+What is Inheritance?
+This question is not answered
+
+What are objects?
+This question is not answered
+
+
+Enter 'y' if your question was present in displayed list (else enter any other character to continue)
+n
+
+Enter question (End with '?')
+What is difference between ad-hoc plymorphism and pure polymorphism?
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+1
+
+Enter Topic
+MA
+Check whether your question has been added before:)
+
+
+Topic: MA
+
+Nothing to display
+
+Enter question (End with '?')
+Why do we need to convert address in 8086?
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+1
+
+Enter Topic
+MA
+Check whether your question has been added before:)
+
+
+Topic: MA
+
+Why do we need to convert address in 8086?
+This question is not answered
+
+
+Enter 'y' if your question was present in displayed list (else enter any other character to continue)
+n
+
+Enter question (End with '?')
+What is an op-code?
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+1
+
+Enter Topic
+MA
+Check whether your question has been added before:)
+
+
+Topic: MA
+
+What is an op-code?
+This question is not answered
+
+Why do we need to convert address in 8086?
+This question is not answered
+
+
+Enter 'y' if your question was present in displayed list (else enter any other character to continue)
+n
+
+Enter question (End with '?')
+What are flags in 8086?
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+1
+
+Enter Topic
+OOP
+Check whether your question has been added before:)
+
+
+Topic: OOP
+
+What is difference between ad-hoc plymorphism and pure polymorphism?
+This question is not answered
+
+What is Inheritance?
+This question is not answered
+
+What are objects?
+This question is not answered
+
+
+Enter 'y' if your question was present in displayed list (else enter any other character to continue)
+n
+
+Enter question (End with '?')
+erfghjkfd sefghjhgf ?
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+5
+Q.1 What are flags in 8086?
+Q.2 What is an op-code?
+Q.3 Why do we need to convert address in 8086?
+Q.4 erfghjkfd sefghjhgf ?
+Q.5 What is difference between ad-hoc plymorphism and pure polymorphism?
+
+If you want to answer any of these question type y (else type any other char)y
+Enter question number
+2
+
+What is an op-code?
+Enter answer (press enter 2 times when you are done)
+Instruction executed by CPU
+
+For more questions type y (else type any other char)
+y
+
+Q.6 What is Inheritance?
+Q.7 What are objects?
+Q.8 Algorithm for recursive binary search?
+Q.9 What is worst case time complexity of quick sort?
+Q.10 What is difference between arrays and vectors?
+
+If you want to answer any of these question type y (else type any other char)y
+Enter question number
+7
+
+What are objects?
+Enter answer (press enter 2 times when you are done)
+Instance of a class
+
+For more questions type y (else type any other char)
+n
+
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+5
+Q.1 What are flags in 8086?
+Q.2 Why do we need to convert address in 8086?
+Q.3 erfghjkfd sefghjhgf ?
+Q.4 What is difference between ad-hoc plymorphism and pure polymorphism?
+Q.5 What is Inheritance?
+
+If you want to answer any of these question type y (else type any other char)y
+Enter question number
+4
+
+What is difference between ad-hoc plymorphism and pure polymorphism?
+Enter answer (press enter 2 times when you are done)
+I don't know
+
+For more questions type y (else type any other char)
+n
+
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+6
+Exiting
+
+
+====================================================================================
+If you are User     --> Press 0
+To enter Admin mode --> Press 1
+(Type any no. key to Exit)
+=====================================================================================
+
+1
+
+Enter password to access admin functions (you only have one chance)
+H15k
+YOU ARE IN ADMIN MODE
+
+=====================================================================================
+Press 1 to remove question by topic
+Press 2 to remove answer of question of specific topic
+Press 3 to exit
+=====================================================================================
+
+Enter choice
+1
+Enter the topic 
+OOP
+
+Topic: OOP
+
+Q.1 What are objects?
+Ans: Instance of a class
+
+Q.2 What is Inheritance?
+This question is not answered
+
+Q.3 What is difference between ad-hoc plymorphism and pure polymorphism?
+Ans: I don't know
+
+Q.4 erfghjkfd sefghjhgf ?
+This question is not answered
+
+Enter the question no. of the Question you want to delete
+4
+Question successfully Removed
+
+=====================================================================================
+Press 1 to remove question by topic
+Press 2 to remove answer of question of specific topic
+Press 3 to exit
+=====================================================================================
+
+Enter choice
+2
+Enter the Topic
+OOP
+
+Topic: OOP
+
+Q.1 What are objects?
+Ans: Instance of a class
+
+Q.2 What is Inheritance?
+Ans:
+
+Q.3 What is difference between ad-hoc plymorphism and pure polymorphism?
+Ans: I don't know
+
+Enter question no. of the question of which you want to delete the answer
+3
+Answer Successfully Removed
+
+=====================================================================================
+Press 1 to remove question by topic
+Press 2 to remove answer of question of specific topic
+Press 3 to exit
+=====================================================================================
+
+Enter choice
+2
+Enter the Topic
+3
+
+Topic: 3
+
+Nothing to display
+
+=====================================================================================
+Press 1 to remove question by topic
+Press 2 to remove answer of question of specific topic
+Press 3 to exit
+=====================================================================================
+
+Enter choice
+3
+Exiting
+
+
+====================================================================================
+If you are User     --> Press 0
+To enter Admin mode --> Press 1
+(Type any no. key to Exit)
+=====================================================================================
+
+0
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+3
+Algorithm for recursive binary search?
+This question is not answered
+
+What is worst case time complexity of quick sort?
+This question is not answered
+
+What is difference between arrays and vectors?
+This question is not answered
+
+What is an algorithm?
+This question is not answered
+
+What is difference between ad-hoc plymorphism and pure polymorphism?
+This question is not answered
+
+
+For more questions type y (else type any other char)
+y
+What is Inheritance?
+Ans:
+
+What are objects?
+Ans: Instance of a class
+
+What are flags in 8086?
+This question is not answered
+
+What is an op-code?
+Ans: Instruction executed by CPU
+
+Why do we need to convert address in 8086?
+This question is not answered
+
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+1
+
+Enter Topic
+CN
+Check whether your question has been added before:)
+
+
+Topic: CN
+
+Nothing to display
+
+Enter question (End with '?')
+What is Node?
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+2
+Enter Topic
+Maths
+
+Topic: Maths
+
+Nothing to display
+
+==============================================================================
+************MENU************
+1.Add new question of particular topic
+2.Display questions and answers of specific topic
+3.Display all questions and answers
+4.Display all answered questions (with their answers)
+5.Display all unanswered questions (also add their answers if you want to)
+6.Exit
+==============================================================================
+
+Enter your choice
+6
+Exiting
+
+
+====================================================================================
+If you are User     --> Press 0
+To enter Admin mode --> Press 1
+(Type any no. key to Exit)
+=====================================================================================
+
+5
+Exiting
 */
