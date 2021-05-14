@@ -188,6 +188,7 @@ public:
         //boolean variable to check topic is already present or not
         bool found = false;
 
+        //Iterating through topic vector
         for (i = 0; i < topic.size(); i++)
         {
 
@@ -466,16 +467,16 @@ public:
         for (int j = 0; j < database[i].size(); j++)
         {
             //Displaying all questions of that topic with index
-            cout << "Q." << j << " ";
+            cout << "Q." << j+1 << " ";
             database[i][j].display();
         }
 
         //Accepting index for which QnA to be removed
-        cout << "Enter the index of the Question you want to delete" << endl;
+        cout << "Enter the question no. of the Question you want to delete" << endl;
         cin >> index;
 
         //Using inbuilt vector function to remove element
-        database[i].erase(database[i].begin() + index); //Time complexity : O(n) + O(m)
+        database[i].erase(database[i].begin() + index-1); //Time complexity : O(n) + O(m)
         cout << "Question successfully Removed" << endl;
     }
 
@@ -527,20 +528,20 @@ public:
             //Displaying all answered questions
             if (database[i][j].answered = true)
             {
-                cout << "Q." << j << " ";
+                cout << "Q." << j+1 << " ";
                 database[i][j].display();
             }
         }
 
         //Asking admin to enter the index for which answer to be removed
-        cout << "Enter index of the question of which you want to delete the answer" << endl;
+        cout << "Enter question no. of the question of which you want to delete the answer" << endl;
         cin >> index;
 
         //Setting answer to null of given index
-        database[i][index].answer = "\0";
+        database[i][index-1].answer = "\0";
 
         //Setting boolean value  answered of question at required index to false
-        database[i][index].answered = false;
+        database[i][index-1].answered = false;
 
         cout << "Answer Successfully Removed" << endl;
     }
