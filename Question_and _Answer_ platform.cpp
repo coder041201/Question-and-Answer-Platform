@@ -581,7 +581,7 @@ int main()
                 cout << "2.Display questions and answers of specific topic" << endl;
                 cout << "3.Display all questions and answers" << endl;
                 cout << "4.Display all answered questions (with their answers)" << endl;
-                cout << "5.Answer unanswered questions (also add their answers if you want to)" << endl;
+                cout << "5.Answer unanswered questions(add their answers if you want to)" << endl;
                 cout << "6.Exit" << endl;
                 cout << "==============================================================================" << endl;
                 cout << endl;
@@ -733,7 +733,7 @@ To enter Admin mode --> Press 1
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================       
 
@@ -758,7 +758,7 @@ What is an algorithm?
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -788,7 +788,7 @@ What is difference between arrays and vectors?
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -821,7 +821,7 @@ What is worst case time complexity of quick sort?
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -857,7 +857,7 @@ Algorithm for recursive binary search?
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -882,7 +882,7 @@ What are objects?
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -912,7 +912,7 @@ What is Inheritance?
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -945,7 +945,7 @@ What is difference between ad-hoc plymorphism and pure polymorphism?
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -970,7 +970,7 @@ Why do we need to convert address in 8086?
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -1000,7 +1000,7 @@ What is an op-code?
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -1033,7 +1033,7 @@ What are flags in 8086?
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -1069,7 +1069,7 @@ erfghjkfd sefghjhgf ?
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -1116,7 +1116,7 @@ n
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -1146,7 +1146,7 @@ n
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -1212,6 +1212,8 @@ Topic: OOP
 Q.1 What are objects?
 Ans: Instance of a class
 
+Q.2 What is Inheritance?
+Ans:
 
 Q.3 What is difference between ad-hoc plymorphism and pure polymorphism?
 Ans: I don't know
@@ -1260,7 +1262,7 @@ To enter Admin mode --> Press 1
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -1285,7 +1287,7 @@ This question is not answered
 For more questions type y (else type any other char)
 y
 What is Inheritance?
-This question is not answered
+Ans:
 
 What are objects?
 Ans: Instance of a class
@@ -1306,7 +1308,7 @@ This question is not answered
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -1331,7 +1333,7 @@ What is Node?
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
@@ -1350,7 +1352,7 @@ Nothing to display
 2.Display questions and answers of specific topic
 3.Display all questions and answers
 4.Display all answered questions (with their answers)
-5.Display all unanswered questions (also add their answers if you want to)
+5.Answer unanswered questions(add their answers if you want to)
 6.Exit
 ==============================================================================
 
