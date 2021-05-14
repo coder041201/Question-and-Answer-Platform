@@ -581,7 +581,7 @@ int main()
                 cout << "2.Display questions and answers of specific topic" << endl;
                 cout << "3.Display all questions and answers" << endl;
                 cout << "4.Display all answered questions (with their answers)" << endl;
-                cout << "5.Display all unanswered questions (also add their answers if you want to)" << endl;
+                cout << "5.Answer unanswered questions (also add their answers if you want to)" << endl;
                 cout << "6.Exit" << endl;
                 cout << "==============================================================================" << endl;
                 cout << endl;
@@ -1212,8 +1212,6 @@ Topic: OOP
 Q.1 What are objects?
 Ans: Instance of a class
 
-Q.2 What is Inheritance?
-Ans:
 
 Q.3 What is difference between ad-hoc plymorphism and pure polymorphism?
 Ans: I don't know
@@ -1287,7 +1285,7 @@ This question is not answered
 For more questions type y (else type any other char)
 y
 What is Inheritance?
-Ans:
+This question is not answered
 
 What are objects?
 Ans: Instance of a class
